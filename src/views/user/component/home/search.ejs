@@ -1,0 +1,40 @@
+<div class="container-fluid mb-3">
+  <div
+    class="row justify-content-center py-5"
+    style="background-color: rgb(13, 110, 253)"
+  >
+    <div class="col-6 text-center text-light">
+      <h5>Cari :</h5>
+      <br />
+      <form
+        class="input-group"
+        role="search"
+        method="post"
+        action="/skripsi/search"
+      >
+        <!-- <span
+          class="input-group-text btn btn-primary"
+          style="border-color: rgb(248, 249, 250)"
+          >Judul</span
+        > -->
+        <input
+          class="form-control"
+          style="border-color: rgb(248, 249, 250)"
+          type="search"
+          name="query"
+          placeholder="Judul"
+          aria-label="Search"
+          autocomplete="off"
+        />
+        <input type="hidden" name="category" value="title" />
+        <button
+          class="btn btn-primary"
+          style="border-color: rgb(248, 249, 250)"
+          type="submit"
+        >
+          <i class="bi bi-search"></i> Cari
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

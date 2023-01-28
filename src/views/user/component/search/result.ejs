@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="row justify-content-center py-5">
+    <div class="col-8 text-start">
+      <% if (skripsi.length < 1) { %>
+      <h1 class="text-center text-primary display-6">Tidak Ada Hasil</h1>
+      <h1 class="text-center text-primary display-6">:(</h1>
+      <% } %>
+      <!-- <h4 class="text-dark mb-5 display-6">Hasil Pencarian :</h4> -->
+      <% skripsi.forEach(skripsi => { %>
+      <div class="mb-5">
+        <a
+          class="text-decoration-none"
+          href="/skripsi/detail/<%= skripsi.id %>"
+        >
+          <h5 class="text-primary">
+            <%= skripsi.year %> | <%= skripsi.title %>
+          </h5>
+        </a>
+        <p class="text-dark"><%= skripsi.author %></p>
+        <p><%= skripsi.pembimbingI %> | <%= skripsi.pembimbingII %></p>
+        <p><%= skripsi.abstract %></p>
+        <hr />
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</div>

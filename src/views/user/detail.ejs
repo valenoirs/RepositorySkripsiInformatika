@@ -1,0 +1,136 @@
+<%- include('./component/search/search') %>
+<!--  -->
+<% if (locals.user && locals.user.isAdmin) { %>
+<!--  -->
+<%- include('./component/modal/delete') %>
+<!--  -->
+<%- include('./component/modal/edit') %>
+<!--  -->
+<% } %>
+
+<div class="container-fluid">
+  <div class="row justify-content-center py-5">
+    <div class="col-8 text-start">
+      <% if (locals.user && locals.user.isAdmin) { %>
+      <!--  -->
+      <%- include('./component/modal/delete') %>
+
+      <div class="mb-4">
+        <a
+          class="text-decoration-none btn btn-outline-danger text-center"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#delete"
+        >
+          <i class="bi bi-trash"></i> Hapus
+        </a>
+        <a
+          class="text-decoration-none btn btn-outline-primary text-center"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#edit"
+        >
+          <i class="bi bi-pen"></i> Edit
+        </a>
+      </div>
+      <% } %>
+      <h1 class="text-primary display-6">
+        <%= skripsi.year %> | <%= skripsi.title %>
+      </h1>
+      <br />
+      <h5 class="text-muted">
+        <i class="bi bi-person-circle"></i> <%= skripsi.author %> %>
+      </h5>
+      <br />
+      <h4 class="text-primary"><i class="bi bi-file-text"></i> Abstract</h4>
+      <br />
+      <p><%= skripsi.abstract %></p>
+      <br />
+      <p>Kata Kunci : <%= skripsi.keyword %></p>
+      <hr />
+
+      <br />
+
+      <h4 class="text-primary"><i class="bi bi-info-circle"></i> Informasi</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 250px"></th>
+            <th scope="col" style="width: 100px"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Penulis</td>
+            <td>:</td>
+            <td><%= skripsi.author %></td>
+          </tr>
+          <tr>
+            <td>Dosen Pembimbing I</td>
+            <td>:</td>
+            <td><%= skripsi.pembimbingI %></td>
+          </tr>
+          <tr>
+            <td>Dosen Pembimbing II</td>
+            <td>:</td>
+            <td><%= skripsi.pembimbingII %></td>
+          </tr>
+          <tr>
+            <td>Jenis Koleksi</td>
+            <td>:</td>
+            <td>Skripsi</td>
+          </tr>
+          <tr>
+            <td>Program Studi</td>
+            <td>:</td>
+            <td>Teknik Informatika</td>
+          </tr>
+          <tr>
+            <td>Fakultas</td>
+            <td>:</td>
+            <td>Teknik</td>
+          </tr>
+          <tr>
+            <td>Staf Upload</td>
+            <td>:</td>
+            <td><%= skripsi.admin %></td>
+          </tr>
+          <tr>
+            <td>Tanggal Upload</td>
+            <td>:</td>
+            <td>
+              <%= skripsi.createdAt.toLocaleDateString('id', { day: 'numeric',
+              month: 'long', year: 'numeric'}) %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br />
+
+      <!-- <h4 class="text-primary mb-3">
+        <i class="bi bi-info-circle"></i> Download
+      </h4> -->
+      <p class="text-center">Download :</p>
+      <% if (locals.user) { %>
+      <div class="text-center">
+        <a
+          class="text-decoration-none btn btn-outline-primary text-center"
+          href="<%= skripsi.uri %> "
+        >
+          <i class="bi bi-file-earmark-arrow-down"></i> Download Salinan
+        </a>
+      </div>
+      <% } else {%>
+      <p class="text-center text-primary">Login untuk mengunduh file.</p>
+      <% } %>
+
+      <!-- <a class="text-decoration-none text-center" href="<%= skripsi.uri %> ">
+        <p class="text-success fs-5">
+          <i class="bi bi-file-earmark-arrow-down"></i> Download Salinan
+        </p>
+      </a> -->
+    </div>
+  </div>
+</div>

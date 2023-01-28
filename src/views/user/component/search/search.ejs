@@ -1,0 +1,47 @@
+<div class="container-fluid mb-3">
+  <div
+    class="row justify-content-center py-5"
+    style="background-color: rgb(13, 110, 253)"
+  >
+    <div class="col-6 text-center text-light">
+      <form role="search" method="post" action="/skripsi/search">
+        <select class="form-select mb-3" name="category" id="search" required>
+          <option value="title"
+          <% if (category && category === 'title') { %>
+           selected
+          <% } %>
+          >Judul</option>
+          <option value="author"
+          <% if (category && category === 'author') { %>
+            selected
+           <% } %>
+           >Penulis</option>
+          <option value="year"
+          <% if (category && category === 'year') { %>
+            selected
+           <% } %>
+          >Tahun</option>
+        </select>
+        <div class="input-group">
+          <input
+            class="form-control"
+            style="border-color: rgb(248, 249, 250)"
+            type="search"
+            name="query"
+            value="<%= query %>"
+            placeholder="Cari"
+            aria-label="Search"
+            autocomplete="off"
+          />
+          <button
+            class="btn btn-primary"
+            style="border-color: rgb(248, 249, 250)"
+            type="submit"
+          >
+            <i class="bi bi-search"></i> Cari
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

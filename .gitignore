@@ -1,0 +1,6 @@
+node_modules
+build
+ignore
+.env
+src/log
+src/ignore
