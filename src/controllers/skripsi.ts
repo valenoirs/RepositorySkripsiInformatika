@@ -75,9 +75,15 @@ export const remove = async (req: Request, res: Response) => {
 
 export const edit = async (req: Request, res: Response) => {
   try {
-    const { id } = req.body
+    const { id, year } = req.body
 
     const skripsi = await Skripsi.findById(id)
+
+    if (year > 2023) {
+      req.flash('notification', 'Tahun lebih besar dari tahun ini.')
+      console.log('[SERVER]: Incorrect year.')
+      return res.redirect('back')
+    }
 
     if (!skripsi) {
       req.flash('notification', 'Skripsi tidak ditemukan.')
@@ -87,13 +93,13 @@ export const edit = async (req: Request, res: Response) => {
 
     await Skripsi.findByIdAndUpdate(id, { $set: req.body })
 
-    req.flash('notification', 'Skripsi berhasil diubah.')
+    req.flash('notification', 'Skripsi berhasil diperbarui.')
     console.log('[SERVER]: Skripsi edited.')
     return res.redirect('back')
   } catch (error) {
     req.flash(
       'notification',
-      'Terjadi kesalahan saat mengubah skripsi, coba lagi.'
+      'Terjadi kesalahan saat memperbarui skripsi, coba lagi.'
     )
     console.error('[SERVER]: Skripsi edit error.', error)
     return res.redirect('/')
