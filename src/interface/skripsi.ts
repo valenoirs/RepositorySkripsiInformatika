@@ -6,7 +6,7 @@ export interface ISkripsi {
   keyword: string
   year: string
   uri: string
-  status: string
+  // status: string
   pembimbingI: string
   pembimbingII: string
   admin: string

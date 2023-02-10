@@ -10,7 +10,7 @@ const SkripsiSchema: Schema = new Schema<ISkripsi>(
     year: { type: String, required: true },
     uri: { type: String, required: true },
     admin: { type: String, required: true },
-    status: { type: String, required: true, default: 'Menunggu Approval' },
+    // status: { type: String, required: true, default: 'Menunggu Approval' },
     pembimbingI: { type: String, required: true },
     pembimbingII: { type: String, required: true },
   },
