@@ -3,6 +3,8 @@ import { mkdirSync } from 'fs'
 import multer, { FileFilterCallback } from 'multer'
 import path from 'path'
 
+const MAX_FILE_SIZE = 10 * 1024 * 1024
+
 type DestinationCallback = (error: Error | null, destination: string) => void
 type FileNameCallback = (error: Error | null, filename: string) => void
 
@@ -17,7 +19,7 @@ const storage = multer.diskStorage({
     try {
       mkdirSync(dir)
     } catch (error) {
-      console.log('[server] ERR! directory-already-existed')
+      // console.log('[server] ERR! directory-already-existed')
     }
 
     callback(null, dir)
@@ -45,6 +47,7 @@ const multerOption = {
     return callback(null, false)
   },
   storage,
+  limit: {fileSize: MAX_FILE_SIZE}
 }
 
 export const upload = multer(multerOption)

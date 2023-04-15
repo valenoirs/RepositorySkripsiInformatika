@@ -107,7 +107,6 @@ export const edit = async (req: Request, res: Response) => {
 }
 
 export const search = async (req: Request, res: Response) => {
-  console.log(req.body)
   try {
     const { category, query } = req.body
 

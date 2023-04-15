@@ -71,7 +71,7 @@ export const signOut = async (req: Request, res: Response) => {
         'Terjadi kesalahan saat mencoba keluar, coba lagi.'
       )
       console.log('[SERVER]: No session id provided.')
-      return res.redirect('back')
+      return res.redirect('/')
     }
 
     const { name } = req.session.user
@@ -83,7 +83,7 @@ export const signOut = async (req: Request, res: Response) => {
 
       // Sign out success
       console.log(`[SERVER]: ${name} signed out.`)
-      return res.redirect('back')
+      return res.redirect('/')
     })
   } catch (error) {
     // Sign out error
@@ -92,7 +92,7 @@ export const signOut = async (req: Request, res: Response) => {
       'Terjadi kesalahan saat mencoba keluar, coba lagi.'
     )
     console.error('[SERVER]: Sign out error.', error)
-    return res.redirect('back')
+    return res.redirect('/')
   }
 }
 
@@ -139,5 +139,119 @@ export const updatePassword = async (req: Request, res: Response) => {
     )
     console.log(`[SERVER]: Update password error.`)
     return res.redirect('/password')
+  }
+}
+
+export const search = async (req: Request, res: Response) => {
+  try {
+    const { category, column, query } = req.body
+
+    if (category === 'mahasiswa') {
+      return res.redirect(
+        `/user/search?category=${category}&column=${column}&query=${query}`
+      )
+    }
+    if (category === 'dosen') {
+      return res.redirect(
+        `/user/search?category=${category}&column=${column}&query=${query}`
+      )
+    }
+  } catch (error) {
+    req.flash(
+      'notification',
+      'Terjadi kesalahan saat melakukan pencarian, coba lagi.'
+    )
+    console.error('[SERVER]: User search error.', error)
+    return res.redirect('/')
+  }
+}
+
+export const remove = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.body
+
+    const user = await User.findById(id)
+
+    if (!user) {
+      req.flash('notification', 'User tidak ditemukan.')
+      console.log('[SERVER]: User not found.')
+      return res.redirect('back')
+    }
+
+    await User.findByIdAndDelete(id)
+
+    req.flash('notification', 'User berhasil dihapus.')
+    console.log('[SERVER]: User deleted.')
+    return res.redirect('back')
+  } catch (error) {
+    req.flash(
+      'notification',
+      'Terjadi kesalahan saat menghapus user, coba lagi.'
+    )
+    console.error('[SERVER]: User delete error.', error)
+    return res.redirect('/')
+  }
+}
+
+export const edit = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.body
+
+    const user = await User.findById(id)
+
+    if (!user) {
+      req.flash('notification', 'User tidak ditemukan.')
+      console.log('[SERVER]: User not found.')
+      return res.redirect('back')
+    }
+
+    await User.findByIdAndUpdate(id, { $set: req.body })
+
+    req.flash('notification', 'User berhasil diperbarui.')
+    console.log('[SERVER]: User edited.')
+    return res.redirect('back')
+  } catch (error) {
+    req.flash(
+      'notification',
+      'Terjadi kesalahan saat memperbarui user, coba lagi.'
+    )
+    console.error('[SERVER]: User edit error.', error)
+    return res.redirect('/')
+  }
+}
+
+export const add = async (req: Request, res: Response) => {
+  console.log(req.body)
+  try {
+    const { nim, isDosen } = req.body
+
+    delete req.body.isDosen
+
+    const user = await User.findOne({ nim })
+
+    if (user) {
+      req.flash('notification', 'User dengan id yang sama telah terdaftar.')
+      console.log('[SERVER]: User with same id found.')
+      return res.redirect('/')
+    }
+
+    if (isDosen === 'Dosen') {
+      req.body.isDosen = true
+    }
+
+    console.log(req.body)
+
+    await new User(req.body).save()
+
+    req.flash('notification', 'User berhasil disimpan.')
+    console.log('[SERVER]: New user added.')
+    return res.redirect('back')
+  } catch (error) {
+    req.flash(
+      'notification',
+      'Terjadi kesalahan saat proses tambah user, coba lagi.'
+    )
+    console.error('[SERVER]: User add error.', error)
+    return res.redirect('/')
   }
 }

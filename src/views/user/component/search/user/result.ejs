@@ -1,0 +1,50 @@
+<div class="container-fluid">
+  <div class="row justify-content-center py-4">
+    <div class="col-8 text-center">
+      <a
+          class="text-decoration-none btn btn-outline-primary text-center"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#tambah"
+        >
+          <i class="bi bi-person-plus"></i> Tambah User
+        </a>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row justify-content-center py-4">
+    <div class="col-8 text-start">
+      <% if (pengguna.length < 1) { %>
+      <h1 class="text-center text-primary display-6">Tidak Ada Hasil</h1>
+      <h1 class="text-center text-primary display-6">:(</h1>
+      <% } %>
+      <!-- <h4 class="text-dark mb-5 display-6">Hasil Pencarian :</h4> -->
+      <% pengguna.forEach(pengguna => { %>
+      <div class="mb-4">
+        <span class="text-primary fs-5"><%= pengguna.name %></span> <span class="text-muted fs-6">(<%= pengguna.nim %>) |</span>
+        <br>
+        <a
+          class="text-decoration-none text-center"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#edit<%= pengguna.id %>"
+        >
+          Edit User
+        </a> 
+        | 
+        <a
+          class="text-decoration-none text-center text-danger"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#delete<%= pengguna.id %>"
+        >
+          Hapus User
+        </a>
+        <hr />
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</div>

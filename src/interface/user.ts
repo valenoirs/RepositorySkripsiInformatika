@@ -4,6 +4,7 @@ export interface IUser {
   nim: string
   password: string
   isAdmin: boolean
+  isDosen: boolean
   createdAt?: Date
   updatedAt?: Date
 }

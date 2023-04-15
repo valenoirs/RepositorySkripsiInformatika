@@ -1,10 +1,10 @@
-<%- include('./component/search/search') %>
+<%- include('./component/search/skripsi/search') %>
 <!--  -->
 <% if (locals.user && locals.user.isAdmin) { %>
 <!--  -->
-<%- include('./component/modal/delete') %>
+<%- include('./component/modal/skripsi/delete') %>
 <!--  -->
-<%- include('./component/modal/edit') %>
+<%- include('./component/modal/skripsi/edit') %>
 <!--  -->
 <% } %>
 
@@ -13,7 +13,7 @@
     <div class="col-8 text-start">
       <% if (locals.user && locals.user.isAdmin) { %>
       <!--  -->
-      <%- include('./component/modal/delete') %>
+      <%- include('./component/modal/skripsi/delete') %>
 
       <div class="mb-4">
         <a

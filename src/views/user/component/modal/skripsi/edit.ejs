@@ -1,14 +1,14 @@
 <div
   class="modal fade"
-  id="upload"
+  id="edit"
   tabindex="-1"
-  aria-labelledby="uploadLabel"
+  aria-labelledby="editLabel"
   aria-hidden="true"
 >
   <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-primary" id="uploadLabel"><i class="bi bi-chevron-right"></i> Upload Skripsi</h5>
+        <h5 class="modal-title text-primary" id="editLabel"><i class="bi bi-chevron-right"></i> Edit Skripsi</h5>
         <button
           type="button"
           class="btn-close"
@@ -17,25 +17,25 @@
         ></button>
       </div>
       <div class="modal-body">
-        <form method="post" action="/skripsi" enctype="multipart/form-data">
+        <form method="post" action="/skripsi?_method=put">
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="title" name="title" placeholder=" " required>
+              <input type="text" class="form-control" id="title" name="title" placeholder=" " required value="<%= skripsi.title %>">
               <label for="title" class="form-label">Judul</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="author" name="author" placeholder=" " required>
+              <input type="text" class="form-control" id="author" name="author" placeholder=" " required value="<%= skripsi.author %>">
               <label for="author" class="form-label">Penulis</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="number" class="form-control" id="year" name="year" placeholder=" " required>
+              <input type="number" class="form-control" id="year" name="year" placeholder=" " required value="<%= skripsi.year %>">
               <label for="year" class="form-label">Tahun</label>
             </div>
             <div class="form-floating mb-3">
-              <textarea class="form-control" name="abstract" id="abstrak" placeholder=" " required style="height: 125px; resize: none;"></textarea>
+              <textarea class="form-control" name="abstract" id="abstrak" placeholder=" " required style="height: 125px; resize: none;"><%= skripsi.abstract %></textarea>
               <label for="abstrak">Abstrak</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="keyword" name="keyword" placeholder=" " required>
+              <input type="text" class="form-control" id="keyword" name="keyword" placeholder=" " required value="<%= skripsi.keyword %>">
               <label for="keyword" class="form-label">Kata Kunci</label>
               <div id="fileHelp" class="form-text">
                 *contoh, kata, kunci
@@ -44,7 +44,7 @@
             <div class="mb-3">
                 <!-- <label for="year" class="form-label">Pembimbing I</label> -->
                 <select class="form-select" name="pembimbingI" id="pembimbing" required>
-                  <option selected disabled hidden>Pembimbing I</option>
+                  <option selected disabled hidden><%= skripsi.pembimbingI %></option>
                   <option value="Vivi Peggie Rantung, ST, MISD">Vivi Peggie Rantung, ST, MISD</option>
                   <option value="Cindy P. C. Munaiseche, S.Kom, M.Eng">Cindy P. C. Munaiseche, S.Kom, M.Eng</option>
                   <option value="Dr. Ing. Parabelem T. D. Rompas, MT">Dr. Ing. Parabelem T. D. Rompas, MT</option>
@@ -65,7 +65,7 @@
             <div class="mb-3">
                 <!-- <label for="year" class="form-label">Pembimbing II</label> -->
                 <select class="form-select" name="pembimbingII" id="pembimbing" required>
-                  <option selected disabled hidden>Pembimbing II</option>
+                  <option selected disabled hidden><%= skripsi.pembimbingII %></option>
                   <option value="Vivi Peggie Rantung, ST, MISD">Vivi Peggie Rantung, ST, MISD</option>
                   <option value="Cindy P. C. Munaiseche, S.Kom, M.Eng">Cindy P. C. Munaiseche, S.Kom, M.Eng</option>
                   <option value="Dr. Ing. Parabelem T. D. Rompas, MT">Dr. Ing. Parabelem T. D. Rompas, MT</option>
@@ -83,17 +83,12 @@
                   <option value="Glenn D. P. Maramis, ST, MT">Glenn D. P. Maramis, ST, MT</option>
                 </select>
             </div>
-            <div class="mb-3">
-                <!-- <label for="file" class="form-label">Upload</label> -->
-                <input type="file" class="form-control" id="file" name="file" required>
-                <div id="fileHelp" class="form-text">
-                    *upload file dengan format .pdf
-                </div>
-            </div>
+
+            <input type="hidden" name="id" value="<%= skripsi.id %>">
         </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary"><i class="bi bi-upload"></i> Upload</button>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-pen"></i> Edit</button>
             </div>
         </form>
     </div>

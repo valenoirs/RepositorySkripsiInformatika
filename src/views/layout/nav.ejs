@@ -23,17 +23,30 @@
         <li class="nav-item">
           <a class="nav-link" href="/"><i class="bi bi-house-door"></i> Home</a>
         </li>
-        <% if (locals.user && locals.user.isAdmin) { %>
+        <% if (locals.user) { %>
         <li class="nav-item">
           <a
             class="nav-link"
             aria-current="page"
             type="button"
             data-bs-toggle="modal"
-            data-bs-target="#upload"
-            ><i class="bi bi-upload"></i> Upload</a
+            <% if (locals.user.isAdmin) { %>
+              data-bs-target="#upload"
+            <% } else {%>
+              data-bs-target="#uploadMahasiswa"
+            <% } %>
+              ><i class="bi bi-upload"></i> Upload</a
           >
         </li>
+          <% if (locals.user.isAdmin) { %>
+            <li class="nav-item">
+              <a
+                href="/user/search?category=mahasiswa&column=name&query="
+                class="nav-link"
+                ><i class="bi bi-person"></i> User</a
+              >
+            </li>
+          <% } %>
         <% } %>
         <li class="nav-item">
           <a class="nav-link" href="/skripsi/search?category=title&query="
@@ -146,13 +159,13 @@
           >
             <div class="mb-3">
               <label for="nim" class="form-label text-primary"
-                ><i class="bi bi-123"></i> NIM</label
+                ><i class="bi bi-123"></i> ID</label
               >
               <input
                 type="password"
                 class="form-control"
                 id="nim"
-                placeholder="NIM"
+                placeholder="ID"
                 name="nim"
                 required
               />

@@ -1,0 +1,45 @@
+<% pengguna.forEach(user => { %>
+  <div
+    class="modal fade"
+    id="delete<%= user.id %>"
+    tabindex="-1"
+    aria-labelledby="deleteLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-danger" id="deleteLabel">
+            <i class="bi bi-chevron-right"></i> Hapus User
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <p>Yakin ingin menghapus <span class="text-danger">user</span>?</p>
+        </div>
+        <div class="modal-footer">
+          <form action="/user?_method=delete" method="post">
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              data-bs-dismiss="modal"
+            >
+              Batal
+            </button>
+  
+            <input type="hidden" name="id" value="<%= user.id %>" />
+  
+            <button type="submit" class="btn btn-danger">
+              <i class="bi bi-trash"></i> Hapus
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<% }) %>

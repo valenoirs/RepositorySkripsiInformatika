@@ -1,13 +1,14 @@
 {
-  "name": "e-commerce-portal",
+  "name": "repository-skripsi-informatika",
   "version": "1.0.0",
-  "description": "E-Commerce Portal for UMKM.",
+  "description": "Web-based repository for informatika skripsi.",
   "main": "index.js",
   "scripts": {
     "start": "npm run build && npm run serve",
-    "build": "rimraf ./build && npx tsc && npm run copy",
+    "build": "rimraf _build && npx tsc && npm run lummox && rimraf build && npm run copy",
+    "lummox": "javascript-obfuscator build --output _build --compact false --dead-code-injection true --dead-code-injection-threshold 1",
     "copy": "ts-node copy",
-    "serve": "node build/index.js",
+    "serve": "node _build/index.js",
     "dev": "nodemon",
     "lint": "eslint . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -4,3 +4,4 @@ ignore
 .env
 src/log
 src/ignore
+_build

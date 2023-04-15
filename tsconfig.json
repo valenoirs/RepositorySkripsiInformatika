@@ -15,5 +15,5 @@
     "alwaysStrict": true,
     "skipLibCheck": true
   },
-  "exclude": ["node_modules", "build", "src/log", "src/ignore", "./copy.ts"]
+  "exclude": ["node_modules", "build", "src/log", "src/ignore", "copy.ts", "_build"]
 }
