@@ -1,14 +1,14 @@
-<div class="container-fluid">
+<div class="container-fluid" data-aos="fade-up" data-aos-duration="750">
   <div class="row justify-content-center py-4">
     <div class="col-8 text-center">
       <a
-          class="text-decoration-none btn btn-outline-primary text-center"
-          type="button"
-          data-bs-toggle="modal"
-          data-bs-target="#tambah"
-        >
-          <i class="bi bi-person-plus"></i> Tambah User
-        </a>
+        class="text-decoration-none btn btn-outline-primary text-center"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#tambah"
+      >
+        <i class="bi bi-person-plus"></i> Tambah User
+      </a>
     </div>
   </div>
 </div>
@@ -22,9 +22,10 @@
       <% } %>
       <!-- <h4 class="text-dark mb-5 display-6">Hasil Pencarian :</h4> -->
       <% pengguna.forEach(pengguna => { %>
-      <div class="mb-4">
-        <span class="text-primary fs-5"><%= pengguna.name %></span> <span class="text-muted fs-6">(<%= pengguna.nim %>) |</span>
-        <br>
+      <div class="mb-4" data-aos="fade-up" data-aos-duration="750">
+        <span class="text-primary fs-5"><%= pengguna.name %></span>
+        <span class="text-muted fs-6">(<%= pengguna.nim %>) |</span>
+        <br />
         <a
           class="text-decoration-none text-center"
           type="button"
@@ -32,8 +33,8 @@
           data-bs-target="#edit<%= pengguna.id %>"
         >
           Edit User
-        </a> 
-        | 
+        </a>
+        |
         <a
           class="text-decoration-none text-center text-danger"
           type="button"

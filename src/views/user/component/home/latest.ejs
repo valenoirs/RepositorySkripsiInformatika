@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" data-aos="fade-down" data-aos-duration="750">
   <div class="row justify-content-center py-5">
     <div class="col-8 text-start">
       <h4 class="text-dark mb-5 display-6">Terakhir Ditambahkan :</h4>
@@ -7,7 +7,7 @@
       <% } %>
       <!--  -->
       <% skripsi.forEach(skripsi => { %>
-      <div class="mb-5">
+      <div class="mb-5" data-aos="fade-up" data-aos-duration="750">
         <a
           class="text-decoration-none"
           href="/skripsi/detail/<%= skripsi.id %>"
