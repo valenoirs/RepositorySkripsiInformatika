@@ -37,7 +37,7 @@ router.get('/skripsi/search', async (req: Request, res: Response) => {
   } else if (category === 'year') {
     skripsi = await Skripsi.find({
       year: { $regex: query, $options: 'i' },
-    }).sort({ yar: 1 })
+    }).sort({ year: 1 })
   }
 
   return res.render('user/skripsi', {
