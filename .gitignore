@@ -1,7 +1,14 @@
+# Main
 node_modules
-build
 ignore
 .env
+
+# Code
 src/log
 src/ignore
+src/public/upload
+
+# Build
+build
 _build
+_build.rar
