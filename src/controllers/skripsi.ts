@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import { Skripsi } from '../models/skripsi'
+import { MAX_FILE_SIZE } from '../public/js/size'
 
 export const upload = async (req: Request, res: Response) => {
   try {
@@ -9,6 +10,12 @@ export const upload = async (req: Request, res: Response) => {
       req.flash('notification', 'Format file yang di upload tidak sesuai.')
       console.log('[SERVER]: Incorrect file format.')
       return res.redirect('/')
+    }
+
+    if (req.file.size > MAX_FILE_SIZE * 1024 * 1024) {
+      req.flash('notification', 'File yang diupload terlalu besar.')
+      console.log('[SERVER]: The file is too big')
+      return res.redirect('back')
     }
 
     const skripsi = await Skripsi.findOne({ title })
